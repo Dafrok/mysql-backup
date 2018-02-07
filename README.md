@@ -1,34 +1,36 @@
-# Mysql Dump
+# Mysql Backup
 
-[![npm version](https://badge.fury.io/js/mysqldump.svg)](http://badge.fury.io/js/mysqldump) [![Build Status](https://travis-ci.org/webcaetano/mysqldump.svg?branch=master)](https://travis-ci.org/webcaetano/mysqldump)
-
-Create a backup from MySQL
+Create a backup from MySQL.
+A modern version of [mysqldump](https://github.com/webcaetano/mysqldump), but it's not to create a file, to output a string instead.
 
 ## Installation
 
 ```
-npm install mysqldump
+npm install mysql-backup
 ```
 
-Example 
-```javascript
-var mysqlDump = require('mysqldump');
+## Get Start
 
-mysqlDump({
+## Example
+
+```javascript
+const mysqlBackup = require('mysql-backup');
+
+mysqlBackup({
 	host: 'localhost',
 	user: 'root',
 	password: '',
 	database: 'test',
-	dest:'./data.sql' // destination file
-},function(err){
-	// create data.sql file;
+}).then(dump => {
+	console.log(dump);
 })
 ```
 
-Full Options Example :
+### Full Options Example
 
 ```javascript
 var mysqlDump = require('mysqldump');
+var fs = require('fs');
 
 mysqlDump({
 	host: 'localhost',
@@ -38,12 +40,10 @@ mysqlDump({
 	tables:['players'], // only these tables
 	where: {'players': 'id < 1000'}, // Only test players with id < 1000
 	ifNotExist:true, // Create table if not exist
-	dest:'./data.sql' // destination file
-},function(err){
-	// create data.sql file;
+}.then(dump => {
+	fs.writeFileSync('test.sql', dump); // Create data.sql file with dump result
 })
 ```
-
 
 ## Options
 
@@ -123,33 +123,14 @@ Type: `Boolean`
 
 Return dump as a raw data on callback instead of create file `Default: false`;
 
-#### dest 
-
-Type: `String`
-
-Output filename with directories `Default: './data.sql'`;
-
 #### socketPath
 
 Type: `String`
 
 Path to a unix domain socket to connect to. When used `host` and `port` are ignored.
 
-[![npm](https://nodei.co/npm/mysqldump.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/mysqldump)
+[![npm](https://nodei.co/npm/mysql-backup.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/mysql-backup)
 
 ---------------------------------
 
 The MIT [License](https://raw.githubusercontent.com/webcaetano/mysqldump/master/LICENSE.md)
-
-
-Maintainers Wanted
----
-
-![](https://img.shields.io/badge/maintainers-wanted-red.svg)
-
-I am looking for maintainers to help triage issues and merge pull requests for this repository
-
-If you are interested in helping me maintain this library, please let me know! [**Read more here &raquo;**](https://github.com/webcaetano/mysqldump/issues/34)
-
-Your help would be greatly appreciated!
-

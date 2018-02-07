@@ -1,14 +1,14 @@
 {
-  "name": "mysqldump",
-  "version": "1.4.2",
-  "description": "Create a DUMP from MySQL",
+  "name": "mysql-backup",
+  "version": "1.0.0",
+  "description": "Create a backup from MySQL",
   "main": "index.js",
   "scripts": {
     "test": "mocha test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/webcaetano/mysqldump"
+    "url": "https://github.com/Dafrok/mysql-backup"
   },
   "keywords": [
     "backup",
@@ -18,20 +18,25 @@
     "restore",
     "database",
     "backup",
-    "database"
+    "database",
+    "string",
+    "tostring"
   ],
-  "author": "Andre Caetano",
+  "authors": [
+    "Andre Caetano",
+    "Dafrok"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/webcaetano/mysqldump/issues"
+    "url": "https://github.com/Dafrok/mysql-backup/issues"
   },
-  "homepage": "https://github.com/webcaetano/mysqldump",
+  "homepage": "https://github.com/Dafrok/mysql-backup",
   "dependencies": {
-    "async": "^1.4.2",
-    "lodash": "^3.10.1",
-    "mq-node": "^1.0.7"
+    "lodash": "^4.17.5",
+    "mq-node": "^1.0.11"
   },
   "devDependencies": {
+    "async": "^2.6.0",
     "chai": "^3.2.0",
     "mocha": "^2.3.2"
   }
