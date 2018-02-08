@@ -17,12 +17,12 @@ npm install mysql-backup
 const mysqlBackup = require('mysql-backup');
 
 mysqlBackup({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'test',
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'test',
 }).then(dump => {
-	console.log(dump);
+  console.log(dump);
 })
 ```
 
@@ -33,15 +33,15 @@ var mysqlDump = require('mysqldump');
 var fs = require('fs');
 
 mysqlDump({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'test',
-	tables:['players'], // only these tables
-	where: {'players': 'id < 1000'}, // Only test players with id < 1000
-	ifNotExist:true, // Create table if not exist
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'test',
+  tables:['players'], // only these tables
+  where: {'players': 'id < 1000'}, // Only test players with id < 1000
+  ifNotExist:true, // Create table if not exist
 }.then(dump => {
-	fs.writeFileSync('test.sql', dump); // Create data.sql file with dump result
+  fs.writeFileSync('test.sql', dump); // Create data.sql file with dump result
 })
 ```
 
