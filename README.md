@@ -14,7 +14,7 @@ npm install mysql-backup
 ## Example
 
 ```javascript
-const mysqlBackup = require('mysql-backup');
+const mysqlBackup = require('mysql-backup')
 
 mysqlBackup({
   host: 'localhost',
@@ -22,17 +22,17 @@ mysqlBackup({
   password: '',
   database: 'test',
 }).then(dump => {
-  console.log(dump);
+  console.log(dump)
 })
 ```
 
 ### Full Options Example
 
 ```javascript
-var mysqlDump = require('mysqldump');
-var fs = require('fs');
+const mysqlBackup = require('mysqldump')
+const fs = require('fs')
 
-mysqlDump({
+mysqlBackup({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -40,8 +40,8 @@ mysqlDump({
   tables:['players'], // only these tables
   where: {'players': 'id < 1000'}, // Only test players with id < 1000
   ifNotExist:true, // Create table if not exist
-}.then(dump => {
-  fs.writeFileSync('test.sql', dump); // Create data.sql file with dump result
+}).then(dump => {
+  fs.writeFileSync('test.sql', dump) // Create data.sql file with dump result
 })
 ```
 
