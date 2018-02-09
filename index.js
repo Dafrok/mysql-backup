@@ -208,33 +208,35 @@ function getDump(dump = {
     return [].concat(dump.schema).concat(dump.data).join('\n\n');
 }
 
-exports = module.exports = async function (options = {
-    // default connection
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: null,
-    // default option
-    tables: null,
-    schema: true,
-    data: true,
-    ifNotExist: true,
-    autoIncrement: true,
-    dropTable: false,
-    where: null
-}) {
+exports = module.exports = async function (options = {}) {
+    const defaultOptions = {
+        // default connection
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: null,
+        // default option
+        tables: null,
+        schema: true,
+        data: true,
+        ifNotExist: true,
+        autoIncrement: true,
+        dropTable: false,
+        where: null
+    };
+    const opts = _.merge(defaultOptions, options);
     const connectionOptions = ['host', 'user', 'password', 'database', 'port', 'socketPath'];
-    const defaultConnection = _.pick(options, connectionOptions);
+    const defaultConnection = _.pick(opts, connectionOptions);
 
-    if (!options.database) {
+    if (!opts.database) {
         throw new Error('Database not specified');
     }
 
     const mysql = mqNode(defaultConnection);
 
-    const tables = await getTables(mysql, options);
-    const schema = await createSchemaDump(mysql, options, tables);
-    const data = await createDataDump(mysql, options, tables);
+    const tables = await getTables(mysql, opts);
+    const schema = await createSchemaDump(mysql, opts, tables);
+    const data = await createDataDump(mysql, opts, tables);
     const dump = getDump({
         data,
         schema
