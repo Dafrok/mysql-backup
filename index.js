@@ -1,3 +1,8 @@
+/**
+ * @file dump mysql data as a string
+ * @author Dafrok<o.o@mug.dog>
+ */
+
 const mqNode = require('mq-node');
 const _ = require('lodash');
 
@@ -242,4 +247,4 @@ exports = module.exports = async function (options = {}) {
         schema
     });
     return dump;
-}
+};
