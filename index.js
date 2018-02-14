@@ -210,7 +210,7 @@ function getDump(dump = {
     schema: [],
     data: []
 }) {
-    return [].concat(dump.schema).concat(dump.data).join('\n\n');
+    return [...dump.schema, ...dump.data].join('\n\n');
 }
 
 exports = module.exports = async function (options = {}) {
