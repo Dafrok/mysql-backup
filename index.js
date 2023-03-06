@@ -213,22 +213,26 @@ function getDump(dump = {
     return [...dump.schema, ...dump.data].join('\n\n');
 }
 
-exports = module.exports = async function (options = {}) {
-    const defaultOptions = {
-        // default connection
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: null,
-        // default option
-        tables: null,
-        schema: true,
-        data: true,
-        ifNotExist: true,
-        autoIncrement: true,
-        dropTable: false,
-        where: null
+exports = module.exports = async function (options) {
+    options = options || {};
+   
+    options = {
+        ...{
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: null,
+            tables: null,
+            schema: true,
+            data: true,
+            ifNotExist: true,
+            autoIncrement: true,
+            dropTable: false,
+            where: null
+        }
+        , ...options
     };
+    
     const opts = _.merge(defaultOptions, options);
     const connectionOptions = ['host', 'user', 'password', 'database', 'port', 'socketPath'];
     const defaultConnection = _.pick(opts, connectionOptions);
